@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Promind API",
+      "name": "Honey API",
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceFolder}",

@@ -5,7 +5,6 @@ import { ReqUser } from '../middlewares/auth';
 import { IS_PROD } from '../config';
 import createProfileModel from '../models/profile';
 import { ClientType } from '../middlewares/headers';
-import createPreferencesModel from '../models/preferences';
 
 export const toSentenceCase = (text: string) => {
   return text[0].toUpperCase() + text.substring(1);
@@ -55,34 +54,4 @@ export const getProfileId = async ({ firebaseId }: ProfileParams) => {
   if (!result) throw new Error('Profile not found');
 
   return result.id;
-};
-
-export const getUserSettings = async (profileId: string) => {
-  const preferencesModel = createPreferencesModel();
-  const result: any = await preferencesModel.findAll({
-    where: {
-      profileId
-    }
-  });
-
-  if (!result?.length) return {};
-
-  return result.reduce(
-    (prev: Record<string, string>, cur: Record<string, string>) => {
-      prev[cur.key] = cur.value;
-      return prev;
-    },
-    {} as Record<string, string>
-  );
-};
-
-export const getOutputLanguage = async (profileId?: string) => {
-  try {
-    if (!profileId) return 'English';
-
-    const { language } = await getUserSettings(profileId);
-    return language as string;
-  } catch (error) {
-    return 'English';
-  }
 };

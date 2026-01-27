@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start:dev": "nodemon --exec ts-node --transpile-only ./src/index.ts",
-    "build": "node_modules/typescript/bin/tsc",
+    "build": "npx tsc",
     "generate:migration": "npx sequelize-cli migration:generate --name",
     "migrate:up": "npx sequelize-cli db:migrate --url",
     "migrate:down": "npx sequelize-cli db:migrate:undo --url",
@@ -17,12 +17,6 @@
     "lint-staged": "lint-staged",
     "test": "jest --passWithNoTests"
   },
-  "prettier": "@chinaza/eslint-config/prettier",
-  "eslintConfig": {
-    "extends": [
-      "@chinaza/eslint-config/express"
-    ]
-  },
   "lint-staged": {
     "*.{js,ts,tsx}": [
       "eslint --fix",
@@ -32,9 +26,9 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.606.0",
     "@aws-sdk/s3-request-presigner": "^3.606.0",
-    "@chinaza/auth": "^1.5.4",
-    "@chinaza/honey": "^1.27.3",
-    "@chinaza/scorp-backend-api": "^4.6.2",
+    "@chinaza/auth": "^1.7.10",
+    "@chinaza/honey": "^1.44.1",
+    "@chinaza/scorp-backend-api": "^4.8.1",
     "@sentry/node": "7.106.0",
     "dotenv": "^16.0.3",
     "firebase-admin": "^11.11.0",
@@ -51,15 +45,18 @@
     "@types/jest": "^29.2.6",
     "@types/multer": "^1.4.7",
     "@types/multer-s3": "^3.0.0",
-    "@types/node": "^18.11.18",
+    "@types/node": "^24.3.1",
     "@types/uuid": "^9.0.2",
     "eslint": "^9.29.0",
+    "eslint-config-prettier": "^10.1.5",
     "jest": "^29.3.1",
     "lint-staged": "^13.0.3",
     "prettier": "^3.5.3",
     "sequelize-cli": "^6.6.0",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.8.3"
-  }
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.40.0"
+  },
+  "packageManager": "yarn@4.9.4"
 }

@@ -1,0 +1,43 @@
+name: Update Honey Version
+
+on:
+    repository_dispatch:
+        types: [update_honey_version]
+    workflow_dispatch:
+        inputs:
+            version:
+                description: "Honey version to update to"
+                required: true
+
+permissions:
+    contents: write
+
+jobs:
+    update-honey:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+
+            - name: Update honey version
+              env:
+                  NEW_VERSION: ${{ github.event.client_payload.version || inputs.version }}
+              run: |
+                  echo "Updating to version $NEW_VERSION"
+                  # Update the package.json template file
+                  # We use a temporary file to ensure we don't break JSON structure
+                  jq --arg ver "^$NEW_VERSION" '.dependencies["@chinaza/honey"] = $ver' generators/app/templates/honey/package.json > temp.json && mv temp.json generators/app/templates/honey/package.json
+
+            - name: Commit and Push
+              uses: stefanzweifel/git-auto-commit-action@v5
+              with:
+                  commit_message: "chore(deps): update @chinaza/honey to ${{ github.event.client_payload.version || inputs.version }}"
+                  branch: main
+                  file_pattern: generators/app/templates/honey/package.json
+                  commit_user_name: Naza Bot
+                  commit_user_email: bot@chinaza.dev
+                  commit_author: Author <actions@github.com>

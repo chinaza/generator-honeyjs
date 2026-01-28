@@ -1,5 +1,6 @@
 # generator-honeyjs [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> 
+
+> A Yeoman generator for scaffolding HoneyJS projects.
 
 ## Installation
 
@@ -10,23 +11,51 @@ npm install -g yo
 npm install -g generator-honeyjs
 ```
 
-Then generate your new project:
+## Local Development
+
+To use the generator locally without publishing to npm:
+
+1. Clone or navigate to the repository:
+
+   ```bash
+   cd /path/to/generator-honeyjs
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Link the package globally:
+
+   ```bash
+   npm link
+   ```
+
+4. Run the generator:
+
+   ```bash
+   yo honeyjs
+   ```
+
+## Usage
+
+Generate your new project:
 
 ```bash
 yo honeyjs
 ```
 
-## Getting To Know Yeoman
+The generator will prompt you for:
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+- **Package Name**: The name of your new project (defaults to the current folder name).
+
+It will then scaffold a new HoneyJS project structure in the specified directory.
 
 ## License
 
- © [chinaza]()
-
+© [chinaza](https://github.com/chinaza)
 
 [npm-image]: https://badge.fury.io/js/generator-honeyjs.svg
 [npm-url]: https://npmjs.org/package/generator-honeyjs

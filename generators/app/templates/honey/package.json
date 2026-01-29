@@ -27,7 +27,7 @@
     "@aws-sdk/client-s3": "^3.606.0",
     "@aws-sdk/s3-request-presigner": "^3.606.0",
     "@chinaza/auth": "^1.7.10",
-    "@chinaza/honey": "^1.46.0",
+    "@chinaza/honey": "^1.46.1",
     "@chinaza/scorp-backend-api": "^4.8.1",
     "@sentry/node": "7.106.0",
     "dotenv": "^16.0.3",
